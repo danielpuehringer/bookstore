@@ -12,6 +12,7 @@ import {HttpClientModule} from "@angular/common/http";
 import { BookFormComponent } from './book-form/book-form.component';
 import {ReactiveFormsModule} from "@angular/forms";
 import { SearchComponent } from './search/search.component';
+import { DateValueAccessorModule} from "angular-date-value-accessor";
 
 @NgModule({
   declarations: [
@@ -25,9 +26,10 @@ import { SearchComponent } from './search/search.component';
   ],
   imports: [
     BrowserModule,
-      ReactiveFormsModule,
+    ReactiveFormsModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    DateValueAccessorModule,
   ],
   providers: [BookStoreService],
   bootstrap: [AppComponent]
