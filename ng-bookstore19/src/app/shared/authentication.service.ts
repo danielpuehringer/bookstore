@@ -19,7 +19,7 @@ interface User {
 @Injectable()
 export class AuthService {
 
-    private api:string = 'http://bookstore19.s1610456027.student.kwmhgb.at';//'http://localhost:8080/api/auth';
+    private api:string = 'http://bookstore19.s1610456027.student.kwmhgb.at/api/auth';//'http://localhost:8080/api/auth';
 
     constructor(private http: HttpClient) {
     }
