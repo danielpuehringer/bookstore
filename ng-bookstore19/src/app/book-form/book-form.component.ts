@@ -61,9 +61,8 @@ export class BookFormComponent implements OnInit {
 
     buildThumbnailsArray() {
         console.log(this.book.images);
-        if(this.book.images.length == 0){ //if new book had no images -> but no in edit mode
-            this.book.images.push(new Image(0,'',''))
-        }
+        //if(this.book.images.length == 0){ //if new book had no images -> but no in edit mode
+        //    this.book.images.push(new Image(0,'',''))
         this.images = this.fb.array(
             this.book.images.map(
                 t => this.fb.group({
@@ -71,13 +70,17 @@ export class BookFormComponent implements OnInit {
                     url: this.fb.control(t.url),
                     title: this.fb.control(t.title)
                 })
-            )
+            ), BookValidators.atLeastOneImage
         );
         console.log(this.images);
     }
 
     addThumbnailControl() {
         this.images.push(this.fb.group({ url: null, title: null }));
+    }
+
+    removeThumbnailControl(index){
+        this.images.removeAt(index);
     }
 
     submitForm() {

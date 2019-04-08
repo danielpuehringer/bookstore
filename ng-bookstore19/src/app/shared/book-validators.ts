@@ -1,4 +1,4 @@
-import {FormControl} from "@angular/forms";
+import {FormArray, FormControl} from "@angular/forms";
 
 export class BookValidators {
     static isbnFormat(control: FormControl): {[error:string]:any}{
@@ -14,4 +14,11 @@ export class BookValidators {
 
     //weitere: einfach googeln: regex preis
     //static checkPrice
+
+    static atLeastOneImage(controlArray: FormArray): {[error:string]:any}{
+        const check = controlArray.controls.some((el)=>{
+            return el.value && el.value.url != "" && el.value.url != null && el.value.title != "" && el.value.title != null;
+        });
+        return check ? null : {atLeastOneImage: {valid: false}};
+    }
 }

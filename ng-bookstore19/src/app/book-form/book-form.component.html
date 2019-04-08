@@ -40,9 +40,13 @@
         <div class="six wide field">
           <input formControlName="title" placeholder="Bild{{i+1}}_Titel">
         </div>
+        <div class="one wide field" *ngIf="!l">
+          <button (click)="removeThumbnailControl(i)" class="ui large button" type="button">-</button>
+        </div>
         <div class="one wide field" *ngIf="l">
           <button (click)="addThumbnailControl()" class="ui large button" type="button">+</button>
         </div>
+        <div *ngIf="errors.images" class="ui negative message">{{ errors.images }}</div>
       </div>
     </div>
   </div>
