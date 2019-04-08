@@ -6,6 +6,7 @@ import { BookFormErrorMessages } from './book-form-error-messages';
 import {BookFactory} from "../shared/book-factory";
 import {BookStoreService} from "../shared/book-store.service";
 import {Book, Image} from "../shared/book";
+import {BookValidators} from "../shared/book-validators";
 
 @Component({
     selector: 'bs-book-form',
@@ -42,8 +43,9 @@ export class BookFormComponent implements OnInit {
             subtitle: this.book.subtitle,
             isbn: [this.book.isbn, [
                 Validators.required,
-                Validators.minLength(10),
-                Validators.maxLength(13)
+                //Validators.minLength(10),
+                //Validators.maxLength(13)
+                BookValidators.isbnFormat
             ]],
             description: this.book.description,
             rating: [this.book.rating,[
