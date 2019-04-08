@@ -3,6 +3,7 @@ import {Book} from "../shared/book";
 import {BookStoreService} from "../shared/book-store.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {BookFactory} from "../shared/book-factory";
+import {AuthService} from "../shared/authentication.service";
 
 @Component({
   selector: 'bs-book-details',
@@ -16,7 +17,8 @@ export class BookDetailsComponent implements OnInit {
   constructor(
       private bs: BookStoreService,
       private route: ActivatedRoute,
-      private router: Router
+      private router: Router,
+      public authService: AuthService
   ) { }
 
   ngOnInit() {
