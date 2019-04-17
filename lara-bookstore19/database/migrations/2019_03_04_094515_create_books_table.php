@@ -22,6 +22,7 @@ class CreateBooksTable extends Migration
             $table->integer('rating')->default(1);
             $table->string('description')->nullable();
             $table->integer('user_id')->unsigned();
+            $table->double('net_price',4,2)->default(0.00);
             $table->timestamps();
         });
     }

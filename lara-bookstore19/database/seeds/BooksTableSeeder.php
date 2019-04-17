@@ -25,6 +25,7 @@ class BooksTableSeeder extends Seeder
         $book->subtitle = "Die Rückkehr des Königs";
         $book->rating = 10;
         $book->description = "Hat ein paar Oscars gewonnen, hier darf man als Mann weinen";
+        $book->net_price = 9.99;
         $book->published = new DateTime();
 
         //get the first user of DB
