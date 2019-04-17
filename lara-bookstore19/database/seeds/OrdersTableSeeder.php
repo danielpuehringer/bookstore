@@ -31,5 +31,8 @@ class OrdersTableSeeder extends Seeder
         $state1->state = 'paid';
         $state1->order()->associate($order);
         $state1->save();
+
+        $books = \App\Book::all()->pluck('id');
+        $order->books()->sync($books);
     }
 }
