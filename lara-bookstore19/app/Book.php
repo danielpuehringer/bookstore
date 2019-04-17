@@ -15,7 +15,7 @@ class Book extends Model
     //protected $guarded
 
     protected $fillable = ['isbn', 'title', 'subtitle',
-    'published', 'rating', 'description', 'user_id'];//those can be edited via HTTP?!
+    'published', 'rating', 'description', 'user_id', 'net_price'];//those can be edited via HTTP?!
 
     //QueryScopes --> präfix scope ($squery ist bereits der erste
     // teil eines queries, um ein verknüpftes query zu erhalten)

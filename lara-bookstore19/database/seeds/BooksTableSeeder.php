@@ -20,7 +20,7 @@ class BooksTableSeeder extends Seeder
             'published' => new DateTime()
         ]);*/
         $book = new App\Book();//wird auf fassade gemappt, fassade greift auf DBank
-        $book->title = "Herr der Ringel";
+        $book->title = "Herr der Ringe!";
         $book->isbn = '1234512345';
         $book->subtitle = "Die Rückkehr des Königs";
         $book->rating = 10;
