@@ -17,6 +17,9 @@ class CreateStatesTable extends Migration
             $table->increments('id');
             $table->string('comment');
             $table->enum('state', array('open', 'paid', 'delivered', 'canceled'));
+
+            $table->integer('order_id')->unsigned();
+
             $table->foreign('order_id')
                 ->references('id')->on('orders')
                 ->onDelete('cascade');

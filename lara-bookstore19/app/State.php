@@ -8,11 +8,10 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class State extends Model
 {
     protected $fillable = [
-        'comment',
-        'state'
+        'comment', 'state'
     ];
 
-    public function orders(): belongsTo {
+    public function order(): BelongsTo{
         return $this->belongsTo(Order::class);
     }
 }

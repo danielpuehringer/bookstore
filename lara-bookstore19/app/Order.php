@@ -4,19 +4,22 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Order extends Model
 {
     protected $fillable = [
         'order_date',
-        'total_price'
+        'total_price',
+        'vat',
+        'user_id'
     ];
 
-    public function user(): belongsTo {
-        return $this->belongsTo(User::class)->withTimestamps();
+    public function user() : BelongsTo {
+        return $this->belongsTo(User::class);
     }
 
-    public function states() : HasMany{
+    public function states() : HasMany {
         return $this->hasMany(State::class);
     }
 }

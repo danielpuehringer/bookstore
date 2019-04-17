@@ -18,9 +18,7 @@ class CreateOrdersTable extends Migration
             $table->date('order_date')->nullable();
             $table->double('total_price',4,2)->default(0.00);
             $table->integer('vat')->default(20);
-            $table->foreign('user_id')
-                ->references('id')->on('users')
-                ->onDelete('cascade');
+            $table->integer('user_id')->unsigned();
             $table->timestamps();
         });
     }

@@ -39,6 +39,10 @@ class User extends Authenticatable implements JWTSubject
         return $this->hasMany(Book::class);
     }
 
+    public function orders() : HasMany {
+        return $this->hasMany(Order::class);
+    }
+
     public function getJWTIdentifier(){
         return $this->getKey();
     }
@@ -46,9 +50,4 @@ class User extends Authenticatable implements JWTSubject
     public function getJWTCustomClaims(){
      return ['user' => ['id' => $this->id]];
     }
-
-    public function orders() : HasMany {
-        return $this->hasMany(Order::class);
-    }
-
 }
