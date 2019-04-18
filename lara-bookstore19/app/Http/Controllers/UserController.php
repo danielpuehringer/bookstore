@@ -15,4 +15,11 @@ class UserController extends Controller
         $users = User::with(['orders', 'books'])->get();
         return $users;
     }
+
+    public function findByUserId($id){
+        $user = User::where('id', $id)->with(['orders', 'books'])->first();
+        return $user;
+    }
+
+
 }
