@@ -40,3 +40,5 @@ Route::get('/books', 'BookController@index');
 //id does not have to be added as parameter in show because it uses the param from
 // the {id} route
 Route::get('/books/{id}', 'BookController@show');
+
+Route::get('/users', 'UserController@index');
