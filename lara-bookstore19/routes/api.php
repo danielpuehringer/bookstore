@@ -24,7 +24,12 @@ Route::get('book/checkisbn/{isbn}', 'BookController@checkISBN');
 Route::get('book/search/{searchTerm}', 'BookController@findBySearchTerm');
 
 Route::get('users', 'UserController@index');
-Route::get('/user/{id}', 'UserController@findByUserId');
+Route::get('user/{id}', 'UserController@findByUserId');
+Route::post('user', 'UserController@save');
+Route::delete('user/{id}', 'UserController@delete');
+//Route::post(users....@store)
+//Route::put('user/{id}...@update)
+//Route::delete('user/{id}...@destroy)
 
 Route::group(['middleware' => ['api', 'cors', 'jwt.auth']], function () {
 Route::post('book', 'BookController@save');
