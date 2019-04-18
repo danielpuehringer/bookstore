@@ -24,10 +24,10 @@ Route::get('book/checkisbn/{isbn}', 'BookController@checkISBN');
 Route::get('book/search/{searchTerm}', 'BookController@findBySearchTerm');
 
 Route::group(['middleware' => ['api', 'cors', 'jwt.auth']], function () {
-    Route::post('book', 'BookController@save');
-    Route::put('book/{isbn}', 'BookController@update');
-    Route::delete('book/{isbn}', 'BookController@delete');
-    Route::post('auth/logout', 'Auth\ApiAuthController@logout');
+Route::post('book', 'BookController@save');
+Route::put('book/{isbn}', 'BookController@update');
+Route::delete('book/{isbn}', 'BookController@delete');
+Route::post('auth/logout', 'Auth\ApiAuthController@logout');
 });
 
 
