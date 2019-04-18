@@ -14,5 +14,6 @@ export class Book {
                 public subtitle?: string,
                 public rating?: number,
                 public images?: Image[],
-                public description?: string){}
+                public description?: string,
+                public net_price?: number){}
 }
