@@ -16,4 +16,7 @@ export const BookFormErrorMessages = [
     new ErrorMessage('rating', 'min', 'Bewertung kann nur positive Werte annehmen'),
     new ErrorMessage('rating', 'max', 'Maximal 10 Sterne erlaubt'),
     new ErrorMessage('images', 'atLeastOneImage', 'Zumindest ein Bild benötigt (inkl. URL und Titel)!'),
+    new ErrorMessage('net_price', 'required', 'The book has to have a price(net)!'),
+    new ErrorMessage('net_price', 'min', 'The minimum price is 0.00!'),
+    new ErrorMessage('net_price', 'max', 'The maximum price is 9999.99!'),
 ];

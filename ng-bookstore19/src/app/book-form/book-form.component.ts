@@ -54,7 +54,12 @@ export class BookFormComponent implements OnInit {
             ]],
             //authors: this.authors,
             images: this.images,
-            published: new Date(this.book.published)
+            published: new Date(this.book.published),
+            net_price: [this.book.net_price, [
+                Validators.required,
+                Validators.min(0.00),
+                Validators.max(9999.99)
+            ]]
         });
         this.bookForm.statusChanges.subscribe(() => this.updateErrorMessages());
     }
@@ -88,9 +93,11 @@ export class BookFormComponent implements OnInit {
         this.bookForm.value.images = this.bookForm.value.images.filter(thumbnail => thumbnail.url);
 
         const book: Book = BookFactory.fromObject(this.bookForm.value);
-//deep copy  - did not work without??
+        //all attributes of book (incl. net_price) have to be in that Book Factory
+        //deep copy  - did not work without??
         book.images = this.bookForm.value.images;
-        console.log(book);
+        console.log("Form Component: ");//TODO delete
+        console.log(book);//TODO delete
 
         //just copy the authors
         book.authors = this.book.authors;
@@ -101,7 +108,7 @@ export class BookFormComponent implements OnInit {
             });
         } else {
             book.user_id = 1;// jsut for testing
-            console.log(book)
+            console.log(book);
             this.bs.create(book).subscribe(res => {
                 this.book = BookFactory.empty();
                 this.bookForm.reset(BookFactory.empty());

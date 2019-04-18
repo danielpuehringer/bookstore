@@ -20,6 +20,7 @@ export class BookFactory {
             rawBook.rating,
             rawBook.images,
             rawBook.description,
+            rawBook.net_price,
         );
     }
 }
