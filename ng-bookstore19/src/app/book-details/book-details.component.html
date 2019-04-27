@@ -9,7 +9,7 @@
     <div class="ui divider"></div>
     <div class="ui grid">
       <div class="four wide column">
-        <h4 class="ui header">Autoren</h4>
+        <h4 class="ui header">Authors</h4>
         <span *ngFor="let author of book.authors; last as l">
          {{ author.firstName }} {{ author.lastName }}<span *ngIf="!l">, </span>
        </span>
@@ -19,7 +19,7 @@
         {{ book.isbn }}
       </div>
       <div class="four wide column">
-        <h4 class="ui header">Erschienen</h4>
+        <h4 class="ui header">Pusblished</h4>
         {{ book.published }}
       </div>
       <div class="four wide column">
@@ -29,7 +29,7 @@
     </div>
   </div>
   <div class="eight wide column">
-    <h3 class="ui header">Beschreibung</h3>
+    <h3 class="ui header">Description</h3>
     {{ book.description }}
   </div>
   <div class="eight wide column">
@@ -44,13 +44,17 @@
 </div>
 
 <button routerLink="/books" class="ui red button">
-  Zurück zur Buchliste
+  Back to booklist
 </button>
 
 <button *ngIf="authService.isLoggedIn()" class="ui tiny red labeled icon button" (click)="removeBook();">
-  <i class="remove icon"></i> Buch löschen
+  <i class="remove icon"></i> Delete
 </button>
 
 <a *ngIf="authService.isLoggedIn()" class="ui tiny yellow labeled icon button" [routerLink]="['../../admin', book?.isbn]">
-  <i class="write icon"></i> Buch bearbeiten
+  <i class="write icon"></i> Edit
+</a>
+
+<a class="ui tiny blue labeled icon button">
+  <i class="cart arrow down icon"></i> Add to cart
 </a>
