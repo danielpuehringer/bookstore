@@ -27,8 +27,8 @@ Route::get('users', 'UserController@index');
 Route::get('user/{id}', 'UserController@findByUserId');
 Route::post('user', 'UserController@save');
 Route::delete('user/{id}', 'UserController@delete');
+Route::put('user/{id}', 'UserController@update');
 //Route::post(users....@store)
-//Route::put('user/{id}...@update)
 //Route::delete('user/{id}...@destroy)
 
 Route::group(['middleware' => ['api', 'cors', 'jwt.auth']], function () {
