@@ -4,6 +4,7 @@ import {BookStoreService} from "../shared/book-store.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {BookFactory} from "../shared/book-factory";
 import {AuthService} from "../shared/authentication.service";
+import {ShoppingCartService} from "../shared/shopping-cart.service";
 
 @Component({
   selector: 'bs-book-details',
@@ -18,7 +19,8 @@ export class BookDetailsComponent implements OnInit {
       private bs: BookStoreService,
       private route: ActivatedRoute,
       private router: Router,
-      public authService: AuthService
+      public authService: AuthService,
+      private scs: ShoppingCartService
   ) { }
 
   ngOnInit() {
@@ -36,6 +38,10 @@ export class BookDetailsComponent implements OnInit {
           res => this.router.navigate(['../'], {relativeTo: this.route})
       );
     }
+  }
+
+  addBookToCart(){
+    this.scs.add(this.book);
   }
 
 }

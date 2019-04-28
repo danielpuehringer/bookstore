@@ -1,0 +1,10 @@
+<h3>Shopping Cart</h3>
+<div class="ui middle aligned selection divided list">
+  <a class="bs-book-list-item item"
+     *ngFor="let book of cartBooks"
+     [book]="book"
+     [routerLink]="['../books', book?.isbn]"
+  >
+
+  </a>
+</div>
