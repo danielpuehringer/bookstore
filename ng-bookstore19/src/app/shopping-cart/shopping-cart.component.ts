@@ -14,7 +14,18 @@ export class ShoppingCartComponent implements OnInit {
   constructor(private scs: ShoppingCartService) { }
 
   ngOnInit() {
-    this.scs.getAll().subscribe(res => this.cartBooks = res);
+    this.scs.syncWithJSON().subscribe(res => this.cartBooks = res);
+  }
+
+  clearStorage(){
+    this.scs.clearStorage();
+    console.log(this.cartBooks);
+  }
+
+  buyBooks(){
+    if(confirm("Do you really want to buy the cart?")){
+      this.scs.createOrder();
+    }
   }
 
 }

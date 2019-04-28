@@ -1,4 +1,12 @@
 <h3>Shopping Cart</h3>
+<button class="ui red button" (click)="clearStorage();">
+  Clear Cart
+  <i class="right trash icon"></i>
+</button>
+<button class="ui green button" (click)="buyBooks();">
+  Buy these books
+  <i class="right money bill alternate outline icon"></i>
+</button>
 <div class="ui middle aligned selection divided list">
   <a class="bs-book-list-item item"
      *ngFor="let book of cartBooks"
