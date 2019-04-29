@@ -11,7 +11,7 @@ import {AuthService} from "../shared/authentication.service";
 export class ShoppingCartComponent implements OnInit {
 
   public cartBooks: Book[];
-  public totalPrices: {net: number, gross: number};
+  public totalPrices: {net: number, gross: number, vat: number};
 
   constructor(private scs: ShoppingCartService, private  authService: AuthService) { }
 

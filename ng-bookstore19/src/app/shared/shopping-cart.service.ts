@@ -75,7 +75,7 @@ export class ShoppingCartService {
   }
 
 
-  syncPrices(): Observable<{net: number, gross: number}>{
+  syncPrices(): Observable<{net: number, gross: number, vat: number}>{
     this.totalNet = 0;
     for(let cartBook of this.cartBooks) {
 
@@ -83,7 +83,7 @@ export class ShoppingCartService {
     }
     this.totalGross = this.totalNet * (1+(this.vat/100));//calc --> if vat=20 => net + 1,2
     this.totalGross = parseFloat(this.totalGross.toFixed(2));//rounding for 2 behind comma
-    return of({net: this.totalNet, gross: this.totalGross});
+    return of({net: this.totalNet, gross: this.totalGross, vat: this.vat});
   }
 
   createOrder() {
