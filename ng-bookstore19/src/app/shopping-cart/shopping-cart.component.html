@@ -1,12 +1,16 @@
 <h3>Shopping Cart</h3>
+<div *ngIf="!isLoggedIn();" class="ui ignored info attached message">
+  You need to log in to buy books!
+</div>
 <button class="ui red button" (click)="clearStorage();">
   Clear Cart
   <i class="right trash icon"></i>
 </button>
-<button class="ui green button" (click)="buyBooks();">
+<button *ngIf="isLoggedIn();" class="ui green button" (click)="buyBooks();">
   Buy these books
   <i class="right money bill alternate outline icon"></i>
 </button>
+
 <div class="ui middle aligned selection divided list">
   <a class="bs-book-list-item item"
      *ngFor="let book of cartBooks"
@@ -16,3 +20,5 @@
 
   </a>
 </div>
+<p>Price: {{ totalPrices.net }}</p>
+<p>PriceG: {{ totalPrices.gross }}</p>

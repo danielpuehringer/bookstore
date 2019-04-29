@@ -2,17 +2,21 @@ import { Injectable } from '@angular/core';
 import {Observable, of} from "rxjs";
 import {Book} from "./book";
 import {BookFactory} from "./book-factory";
+import {AuthService} from "./authentication.service";
 
 @Injectable({
   providedIn: 'root'
 })
+
 export class ShoppingCartService {
+  private cartBooks: Book[] = new Array();
 
-  private testBook: Book = new Book(10, "12345645678", "TitleöÖ", new Array(), new Date(), 5);
-  private cartBooks: Book[] = new Array(this.testBook);
-  private returnedBook = BookFactory.empty();
+  private totalNet: number = 0;
+  private totalGross: number = 0;
 
-  constructor() {
+  private vat = 20;//tax
+
+  constructor(private auth: AuthService) {
   }
 
   add(cartBook: Book): boolean {
@@ -61,6 +65,7 @@ export class ShoppingCartService {
         this.cartBooks.push(returnedBook);
       }
     }
+    this.syncPrices();
     return of(this.cartBooks);
   }
 
@@ -69,8 +74,22 @@ export class ShoppingCartService {
     return true;
   }
 
+
+  syncPrices(): Observable<{net: number, gross: number}>{
+    this.totalNet = 0;
+    for(let cartBook of this.cartBooks) {
+
+      this.totalNet += cartBook.net_price;
+    }
+    this.totalGross = this.totalNet * (1+(this.vat/100));//calc --> if vat=20 => net + 1,2
+    this.totalGross = parseFloat(this.totalGross.toFixed(2));//rounding for 2 behind comma
+    return of({net: this.totalNet, gross: this.totalGross});
+  }
+
   createOrder() {
+    this.syncWithJSON();//hopefully not needed
     console.log("order will be created with:");
     console.log(this.cartBooks);
+    console.log(this.auth.getCurrentUserId());
   }
 }
