@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import {Observable, of} from "rxjs";
 import {Book} from "./book";
+import {BookFactory} from "./book-factory";
 
 @Injectable({
   providedIn: 'root'
@@ -9,6 +10,7 @@ export class ShoppingCartService {
 
   private testBook: Book = new Book(10, "12345645678", "TitleöÖ", new Array(), new Date(), 5);
   private cartBooks: Book[] = new Array(this.testBook);
+  private returnedBook = BookFactory.empty();
 
   constructor() {
   }
@@ -55,7 +57,8 @@ export class ShoppingCartService {
         currentBook = JSON.parse(currentBook);
 
         //TODO maybe reassigne here? to avoid error
-        this.cartBooks.push(currentBook);
+        const returnedBook : Book = BookFactory.fromObject(currentBook);
+        this.cartBooks.push(returnedBook);
       }
     }
     return of(this.cartBooks);
