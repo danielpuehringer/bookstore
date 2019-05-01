@@ -5,6 +5,10 @@
     View book list
     <i class="right arrow icon"></i>
   </a>
+    <a routerLink="../order/{{ getUserId() }}" class="ui red button" *ngIf="isLoggedIn()">
+        Show me my orders
+        <i class="right arrow icon"></i>
+    </a>
   <bs-search class="column" (bookSelected)="bookSelected($event)"></bs-search>
 
     <bs-admin-order-list *ngIf="isAdmin()"></bs-admin-order-list>

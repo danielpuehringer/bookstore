@@ -10,16 +10,24 @@ import {AuthService} from "../shared/authentication.service";
 })
 export class HomeComponent implements OnInit {
 
-  constructor(private router: Router, private route: ActivatedRoute, private auth: AuthService) { }
+    constructor(private router: Router, private route: ActivatedRoute, private auth: AuthService) { }
 
-  bookSelected(book: Book){
+    bookSelected(book: Book){
     this.router.navigate(['../books', book.isbn], {relativeTo: this.route});
-  }
+    }
 
-  ngOnInit() {
-  }
+    ngOnInit() {
+    }
 
-  isAdmin(): boolean {
+    isAdmin(): boolean {
       return this.auth.isAdmin();
-  }
+    }
+
+    getUserId(): number {
+        return this.auth.getCurrentUserId();
+    }
+
+    isLoggedIn(): boolean {
+        return this.auth.isLoggedIn();
+    }
 }
