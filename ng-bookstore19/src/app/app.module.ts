@@ -19,6 +19,7 @@ import {TokenInterceptorService} from "./shared/token-interceptor.service";
 import {JwtInterceptorService} from "./shared/jwt-interceptor.service";
 import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
 import { OrderListComponent } from './order-list/order-list.component';
+import { AdminOrderListComponent } from './order/admin-order-list/admin-order-list.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { OrderListComponent } from './order-list/order-list.component';
     SearchComponent,
     LoginComponent,
     ShoppingCartComponent,
-    OrderListComponent
+    OrderListComponent,
+    AdminOrderListComponent
   ],
   imports: [
     BrowserModule,

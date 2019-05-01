@@ -1,23 +1,26 @@
 <div class="ui list" *ngIf="isLoggedIn(); else loggedOut">
-    <div class="item" *ngFor="let order of orders">
-        <div class="ui segment">
-            <i class="map marker icon"></i>
-            <div class="content">
-                <div class="header">[{{ order.states[order.states.length-1].state }}] Order Nr. {{ order.id }} from {{ order.order_date }} | {{ order.total_price }}€</div>
-                <div class="description">
-                    <div>
-                        {{ order.vat }}% is {{ order.total_price }}
-                    </div>
-                    <div *ngIf="isAdmin()">
-                        User ID: {{ order.user_id }}
-                    </div>
-                    <div *ngFor="let state of order.states">
-                        Status: {{ state.state}} ({{ state.comment }})
-                    </div>
+    <div *ngIf="isAdmin();">
+        <h3>Backend view of all orders:</h3>
+        <div class="item" *ngFor="let order of orders">
+            <div class="ui segment">
+                <i class="map marker icon"></i>
+                <div class="content">
+                    <div class="header">[{{ order.states[order.states.length-1].state }}] Order Nr. {{ order.id }} from {{ order.order_date }} | {{ order.total_price }}€</div>
+                    <div class="description">
+                        <div>
+                            {{ order.vat }}% is {{ order.total_price }}
+                        </div>
+                        <div *ngIf="isAdmin()">
+                            User ID: {{ order.user_id }}
+                        </div>
+                        <div *ngFor="let state of order.states">
+                            Status: {{ state.state}} ({{ state.comment }})
+                        </div>
 
-                    <div class="ui horizontal divider"></div>
-                    <div *ngFor="let book of order.books">
-                        <a  routerLink="../books/{{book.isbn}}">Book: {{ book.title }} - {{ book.subtitle }} ({{ book.isbn }} costs {{ book.net_price }})</a>
+                        <div class="ui horizontal divider"></div>
+                        <div *ngFor="let book of order.books">
+                            <a  routerLink="../books/{{book.isbn}}">Book: {{ book.title }} - {{ book.subtitle }} ({{ book.isbn }} costs {{ book.net_price }})</a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -26,7 +29,7 @@
 </div>
 
 <ng-template #loggedOut>
-    <p>You need to login</p>
+    <p>Log in as admin to see all orders</p>
 </ng-template>
 
 <div *ngFor="let userOrder of ordersOfUser">
