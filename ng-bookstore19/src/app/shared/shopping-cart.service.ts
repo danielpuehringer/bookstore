@@ -9,10 +9,10 @@ import {AuthService} from "./authentication.service";
 })
 
 export class ShoppingCartService {
-  private cartBooks: Book[] = new Array();
+  public cartBooks: Book[] = new Array();
 
-  private totalNet: number = 0;
-  private totalGross: number = 0;
+  public totalNet: number = 0;
+  public totalGross: number = 0;
 
   private vat = 20;//tax
 

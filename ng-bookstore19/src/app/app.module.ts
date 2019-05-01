@@ -18,6 +18,7 @@ import {AuthService} from "./shared/authentication.service";
 import {TokenInterceptorService} from "./shared/token-interceptor.service";
 import {JwtInterceptorService} from "./shared/jwt-interceptor.service";
 import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
+import { OrderListComponent } from './order-list/order-list.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
     BookFormComponent,
     SearchComponent,
     LoginComponent,
-    ShoppingCartComponent
+    ShoppingCartComponent,
+    OrderListComponent
   ],
   imports: [
     BrowserModule,
