@@ -4,7 +4,4 @@
     <a routerLink="/cart" routerLinkActive="active" class="item">Cart</a>
     <a routerLink="/login" routerLinkActive="active" class="item">{{ getLoginLabel() }}</a>
 </div>
-<div *ngIf="isLoggedIn()" class="ui one item tabs menu">
-    <a routerLink="/admin" routerLinkActive="active" class="item">Create Book</a>
-</div>
     <router-outlet></router-outlet>

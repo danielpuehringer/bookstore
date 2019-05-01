@@ -39,17 +39,17 @@ export class ShoppingCartService {
   }
 
   clearStorage() {
+    //manually storing items to fill them in after clearing whole local storage
     const token = localStorage.getItem("token");
     const userId = localStorage.getItem("userId");
-
-    if (token && userId){
-      console.log("exist");
-    }
+    const isAdmin = localStorage.getItem("isAdmin");
 
     localStorage.clear();
-
-    localStorage.setItem("token", token);
-    localStorage.setItem("userId", userId);
+    if (token && userId && isAdmin){
+        localStorage.setItem("token", token);
+        localStorage.setItem("userId", userId);
+        localStorage.setItem("isAdmin", isAdmin);
+    }
     this.syncWithJSON();
   }
 

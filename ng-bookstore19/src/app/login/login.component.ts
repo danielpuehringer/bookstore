@@ -37,6 +37,8 @@ export class LoginComponent implements OnInit {
                 const resObj = res as Response;
                 if (resObj.response === "success") {
                     this.authService.setLocalStorage(resObj.result.token);
+                    console.log("big item, yo");
+                    console.log(resObj.result);
                     this.router.navigateByUrl('/');
                 }
             });

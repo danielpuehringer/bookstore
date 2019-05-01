@@ -12,20 +12,21 @@ interface User {
         email: string,
         id: number,
         name: string,
-        updated_at: Date
+        updated_at: Date,
+        isAdmin: boolean
     }
 }
 
 @Injectable()
 export class AuthService {
 
-    private api:string = 'http://bookstore19.s1610456027.student.kwmhgb.at/api/auth';//'http://localhost:8080/api/auth';
+    private api:string = 'http://bookstore19.s1610456027.student.kwmhgb.at/api';//'http://localhost:8080/api/auth';
 
     constructor(private http: HttpClient) {
     }
 
     login(email: string, password: string ) {
-        return this.http.post(`${this.api}/login`, {'email': email, 'password': password});
+        return this.http.post(`${this.api}/auth/login`, {'email': email, 'password': password});
     }
 
     public setCurrentUserId(){
@@ -39,21 +40,23 @@ export class AuthService {
         return Number.parseInt(localStorage.getItem('userId'));
     }
 
+    public isAdmin(): boolean{
+        let state: number = Number.parseInt(localStorage.getItem('isAdmin'));
+        return state === 1;
+    }
+
     public setLocalStorage(token: string) {
-        console.log("Storing token");
-        console.log(token);
         const decodedToken = decode(token);
-        console.log(decodedToken);
-        console.log(decodedToken.user.id);
         localStorage.setItem('token', token);
         localStorage.setItem('userId', decodedToken.user.id);
+        localStorage.setItem('isAdmin', decodedToken.user.isAdmin);
     }
 
     logout() {
-        this.http.post(`${this.api}/logout`, {});
+        this.http.post(`${this.api}/auth/logout`, {});
         localStorage.removeItem("token");
         localStorage.removeItem("userId");
-        console.log("logged out");
+        localStorage.removeItem("isAdmin");
     }
 
     public isLoggedIn() {
@@ -63,5 +66,4 @@ export class AuthService {
     isLoggedOut() {
         return !this.isLoggedIn();
     }
-
 }

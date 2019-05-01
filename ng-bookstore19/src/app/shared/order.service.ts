@@ -15,10 +15,6 @@ export class OrderService {
 
   private api= "http://bookstore19.s1610456027.student.kwmhgb.at/api";
 
-  constructor(private http: HttpClient) {
-
-  }
-
   getAllOrders(): Observable<Array<Order>> {
     return this.http.get(`${this.api}/orders`)
         .pipe(retry(3)).pipe(catchError(this.errorHandler));

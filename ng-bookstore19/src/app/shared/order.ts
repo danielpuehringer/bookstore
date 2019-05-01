@@ -7,5 +7,7 @@ export class Order {
         public user_id: number,
         public book_id: number[],
         public states: number[]
-    )
+    ){
+
+    }
 }
