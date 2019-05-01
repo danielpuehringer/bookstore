@@ -18,8 +18,8 @@ import {AuthService} from "./shared/authentication.service";
 import {TokenInterceptorService} from "./shared/token-interceptor.service";
 import {JwtInterceptorService} from "./shared/jwt-interceptor.service";
 import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
-import { OrderListComponent } from './order-list/order-list.component';
 import { AdminOrderListComponent } from './order/admin-order-list/admin-order-list.component';
+import { OrderListComponent } from './order/order-list/order-list.component';
 
 @NgModule({
   declarations: [
@@ -32,8 +32,8 @@ import { AdminOrderListComponent } from './order/admin-order-list/admin-order-li
     SearchComponent,
     LoginComponent,
     ShoppingCartComponent,
-    OrderListComponent,
-    AdminOrderListComponent
+    AdminOrderListComponent,
+    OrderListComponent
   ],
   imports: [
     BrowserModule,
