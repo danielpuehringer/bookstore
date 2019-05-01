@@ -3,6 +3,7 @@ import {ShoppingCartService} from "../shared/shopping-cart.service";
 import {Book} from "../shared/book";
 import {AuthService} from "../shared/authentication.service";
 import {Router} from "@angular/router";
+import {Order} from "../shared/order";
 
 @Component({
   selector: 'bs-shopping-cart',
@@ -30,8 +31,12 @@ export class ShoppingCartComponent implements OnInit {
 
   buyBooks(){
     if(confirm("Do you really want to buy the cart?")){
-      this.scs.createOrder();
-      this.router.navigate(['./orders']);
+        const userId = this.authService.getCurrentUserId();
+      let order = new Order(null, new Date(), this.totalPrices.gross,
+      this.totalPrices.vat, userId, null, null);
+      this.scs.createOrder(order);
+
+      this.router.navigate(['./order/'+ userId]);
     }
   }
 

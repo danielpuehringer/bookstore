@@ -1,24 +1,27 @@
-<h3>Shopping Cart</h3>
-<div *ngIf="!isLoggedIn();" class="ui ignored info attached message">
-  You need to log in to buy books!
-</div>
-<button class="ui red button" (click)="clearStorage();">
-  Clear Cart
-  <i class="right trash icon"></i>
-</button>
-<button *ngIf="isLoggedIn();" class="ui green button" (click)="buyBooks();">
-  Buy these books
-  <i class="right money bill alternate outline icon"></i>
-</button>
+<div class="ui container">
+    <h3>Shopping Cart</h3>
+    <div *ngIf="!isLoggedIn();" class="ui ignored info attached message">
+        You need to log in to buy books!
+    </div>
+    <button class="ui red button" (click)="clearStorage();">
+        Clear Cart
+        <i class="right trash icon"></i>
+    </button>
+    <button *ngIf="isLoggedIn();" class="ui green button" (click)="buyBooks();">
+        Buy these books
+        <i class="right money bill alternate outline icon"></i>
+    </button>
 
-<div class="ui middle aligned selection divided list">
-  <a class="bs-book-list-item item"
-     *ngFor="let book of cartBooks"
-     [book]="book"
-     [routerLink]="['../books', book?.isbn]"
-  >
+    <div class="ui middle aligned selection divided list">
+        <a class="bs-book-list-item item"
+           *ngFor="let book of cartBooks"
+           [book]="book"
+           [routerLink]="['../books', book?.isbn]"
+        >
 
-  </a>
+        </a>
+    </div>
+    <p>Total Net Price: {{ totalPrices.net }}</p>
+    <p>Total Gross Price ({{ totalPrices.vat }}% VAT): {{ totalPrices.gross }}</p>
+
 </div>
-<p>Total Net Price: {{ totalPrices.net }}</p>
-<p>Total Gross Price ({{ totalPrices.vat }}% VAT): {{ totalPrices.gross }}</p>

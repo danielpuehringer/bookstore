@@ -53,6 +53,6 @@ export class BookStoreService {
 
     private errorHandler(error: Error | any): Observable<any>{
         return throwError(error);
-  }
+    }
 
 }

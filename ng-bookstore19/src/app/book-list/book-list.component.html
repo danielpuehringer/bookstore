@@ -1,13 +1,15 @@
-<a routerLink="/admin" routerLinkActive="active" class="ui primary button">Create Book</a>
-<div class="ui middle aligned selection divided list">
-  <!--<bs-book-list-item [book]="book"></bs-book-list-item>-->
-  <a class="bs-book-list-item item"
-     *ngFor="let book of books"
-     [book]="book"
-     routerLink="{{book.isbn}}"
-  >
+<div class="ui container">
+    <a routerLink="/admin" routerLinkActive="active" class="ui primary button">Create Book</a>
+    <div class="ui middle aligned selection divided list">
+        <!--<bs-book-list-item [book]="book"></bs-book-list-item>-->
+        <a class="bs-book-list-item item"
+           *ngFor="let book of books"
+           [book]="book"
+           routerLink="{{book.isbn}}"
+        >
 
-  </a>
+        </a>
+    </div>
 </div>
 
 

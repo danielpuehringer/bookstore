@@ -3,6 +3,8 @@ import {Observable, of} from "rxjs";
 import {Book} from "./book";
 import {BookFactory} from "./book-factory";
 import {AuthService} from "./authentication.service";
+import {HttpClient} from "@angular/common/http";
+import {catchError, retry} from "rxjs/internal/operators";
 
 @Injectable({
   providedIn: 'root'
@@ -14,9 +16,11 @@ export class ShoppingCartService {
   public totalNet: number = 0;
   public totalGross: number = 0;
 
+    private api= "http://bookstore19.s1610456027.student.kwmhgb.at/api";
+
   private vat = 20;//tax
 
-  constructor(private auth: AuthService) {
+  constructor(private auth: AuthService, private http: HttpClient) {
   }
 
   add(cartBook: Book): boolean {
@@ -86,10 +90,31 @@ export class ShoppingCartService {
     return of({net: this.totalNet, gross: this.totalGross, vat: this.vat});
   }
 
-  createOrder() {
-    this.syncWithJSON();//hopefully not needed
-    console.log("order will be created with:");
-    console.log(this.cartBooks);
-    console.log(this.auth.getCurrentUserId());
+  createOrder(order: Order): Observable<any> {
+    /*{
+     "order_date":"2019-05-02 08:09:02",
+     "total_price":"1.99",
+     "vat": 10,
+     "user_id": 1,
+     "states": [
+     {
+     "comment": "Hans eins",
+     "state": "open"
+     },
+     {
+     "comment": "Hans zwei",
+     "state": "paid"
+     }],
+     "books" : [
+     {"isbn": "1234512345"},
+     {"isbn": "123451234567"}
+     ]
+     }*/
+    console.log(order);//TODO hier gehts weiter
+    return this.http.post(`${this.api}/order`, order).pipe(retry(3)).pipe(catchError(this.errorHandler));
   }
+
+    private errorHandler(error: Error | any): Observable<any>{
+        return throwError(error);
+    }
 }
