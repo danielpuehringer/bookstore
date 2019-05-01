@@ -20,6 +20,7 @@ import {JwtInterceptorService} from "./shared/jwt-interceptor.service";
 import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
 import { AdminOrderListComponent } from './order/admin-order-list/admin-order-list.component';
 import { OrderListComponent } from './order/order-list/order-list.component';
+import { ReversePipe } from './shared/reverse.pipe';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { OrderListComponent } from './order/order-list/order-list.component';
     LoginComponent,
     ShoppingCartComponent,
     AdminOrderListComponent,
-    OrderListComponent
+    OrderListComponent,
+    ReversePipe
   ],
   imports: [
     BrowserModule,

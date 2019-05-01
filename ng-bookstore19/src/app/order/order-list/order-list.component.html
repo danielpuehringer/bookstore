@@ -1,3 +1,96 @@
-<p>
-  order-list works!
-</p>
+<div *ngIf="ordersOfUser" class="container">
+    <table class="ui very basic collapsing celled table">
+        <thead>
+        <tr><th>Order ID</th>
+            <th>Ordered On</th>
+            <th>Created By</th>
+            <th>Current State</th>
+            <th>All States</th>
+            <th>Book Title</th>
+        </tr></thead>
+        <tbody>
+        <tr *ngFor="let order of ordersOfUser">
+            <td>
+                <div class="content">
+                    {{ order.id }}
+                </div>
+            </td>
+            <td>
+                <div class="content">
+                    {{ order.order_date }}
+                </div>
+            </td>
+
+            <td>
+                <div class="content">
+                    {{ order.user_id }}
+                </div>
+            </td>
+
+            <td *ngIf="order.states">
+                <div class="content">
+                    {{ order.states[order.states.length-1].state }}
+                </div>
+            </td>
+
+            <td *ngIf="order.states">
+                <div class="content">
+                    <div *ngFor="let s of order.states | reverse">
+                        {{ s.state }} (comment: {{ s.comment }})
+                    </div>
+                </div>
+            </td>
+
+            <td *ngFor="let b of order.books">
+                <div class="content">
+                    {{ b.title }}
+                </div>
+                <div class="sub header">{{ b.subtitle }}
+                </div>
+            </td>
+        </tr>
+        <!--<tr>
+            <td>
+                <h4 class="ui image header">
+                    <img src="/images/avatar2/small/matthew.png" class="ui mini rounded image">
+                    <div class="content">
+                        Matthew
+                        <div class="sub header">Fabric Design
+                        </div>
+                    </div>
+                </h4></td>
+            <td>
+                15
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <h4 class="ui image header">
+                    <img src="/images/avatar2/small/lindsay.png" class="ui mini rounded image">
+                    <div class="content">
+                        Lindsay
+                        <div class="sub header">Entertainment
+                        </div>
+                    </div>
+                </h4></td>
+            <td>
+                12
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <h4 class="ui image header">
+                    <img src="/images/avatar2/small/mark.png" class="ui mini rounded image">
+                    <div class="content">
+                        Mark
+                        <div class="sub header">Executive
+                        </div>
+                    </div>
+                </h4></td>
+            <td>
+                11
+            </td>
+        </tr>-->
+        </tbody>
+    </table>
+</div>

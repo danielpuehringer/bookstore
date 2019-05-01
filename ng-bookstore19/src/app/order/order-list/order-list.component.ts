@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {ActivatedRouteSnapshot, ActivatedRoute, Router} from "@angular/router";
 import {OrderService} from "../../shared/order.service";
 import {Order} from "../../shared/order";
+import {AuthService} from "../../shared/authentication.service";
 
 @Component({
   selector: 'bs-order-list',
@@ -15,11 +16,11 @@ export class OrderListComponent implements OnInit {
     constructor(
       private route: ActivatedRoute,
       private router: Router,
-      private os: OrderService
+      private os: OrderService,
+      private auth: AuthService
     ) { }
 
     ngOnInit() {
-        //this.bs.getSingle(params['isbn']).subscribe(b => this.book=b);
         const params = this.route.snapshot.params;
         this.os.getOrdersOfUser(params['user_id']).subscribe(res => this.ordersOfUser = res);
     }
