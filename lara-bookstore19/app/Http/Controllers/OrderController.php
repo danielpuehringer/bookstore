@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Book;
 use App\Order;
+use App\State;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\DB;
@@ -10,7 +13,7 @@ use Illuminate\Support\Facades\DB;
 class OrderController extends Controller
 {
 
-    //orders
+    //GET: orders
     public function index(){
         //load all orders and relations with eager loading
 
@@ -18,14 +21,14 @@ class OrderController extends Controller
         return $orders;
     }
 
-    //orders/user/{id}
+    //GET: orders/user/{id}
     public function findByUserId(string $userId) {
         $ordersOfUser = Order::with(['states', 'books'])->where('user_id', $userId)->get();
         return $ordersOfUser;
     }
 
 
-    //order/{id}
+    //GET: order/{id}
     public function findByOrderId(string $orderId) { //function is not mandatory
         $order = Order::with(['states', 'books'])->where('id', $orderId)->first();
         return $order;
@@ -38,23 +41,43 @@ class OrderController extends Controller
         DB::beginTransaction();
         try{
             $order = Order::create($request->all());
+            $order->save();
 
-            //arrays welche im with übergeben wurden alle auflisten
-            //states
-            //books
-            //TODO
+            //STATES
+            $receivedOrder = Order::where('user_id', $request['user_id'])->first();
+            $orderId = $receivedOrder['id'];
+
+            if(isset($request['states']) && is_array($request['states'])) {
+                foreach ($request['states'] as $s) {
+                    $state = State::firstOrNew(['comment' => $s['comment'], 'state' => $s['state'], 'order_id' => $orderId]);
+                    $order->states()->save($state);
+                }
+            }
+
+            if(isset($request['states']) && is_array($request['states'])) {
+                foreach ($request['states'] as $s) {
+                    $state = State::firstOrNew(['comment' => $s['comment'], 'state' => $s['state'], 'order_id' => $orderId]);
+                    $order->states()->save($state);
+                }
+            }
+
+            //BOOKS
+            if(isset($request['books']) && is_array($request['books'])) {
+                foreach ($request['books'] as $b){
+                    $book = Book::where('isbn', $b['isbn'])->first();
+                    $order->books()->save($book);
+                }
+            }
 
             DB::commit();
             // return a vaild http response
-            return response()->json($order, 201);
+            $returnableOrder = $order->with(['states', 'books'])->where('id', $order['id'])->first();
+            return response()->json($returnableOrder, 201);
         }
         catch(\Exception $e){
             DB::rollback();
             return response()->json("saving order failed: " . $e->getMessage(), 420);
         }
-
-
-
         return $request;
     }
 
