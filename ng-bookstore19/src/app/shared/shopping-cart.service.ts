@@ -92,7 +92,6 @@ export class ShoppingCartService {
   }
 
   create(order: Order): Observable<any> {
-    console.log(order);//TODO hier gehts weiter
     return this.http.post(`${this.api}/order`, order).pipe(retry(3)).pipe(catchError(this.errorHandler));
   }
 

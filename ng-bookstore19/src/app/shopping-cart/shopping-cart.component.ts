@@ -5,6 +5,7 @@ import {AuthService} from "../shared/authentication.service";
 import {Router} from "@angular/router";
 import {Order} from "../shared/order";
 import {OrderFactory} from "../shared/order-factory";
+import {State} from "../shared/state";
 
 @Component({
   selector: 'bs-shopping-cart',
@@ -33,15 +34,23 @@ export class ShoppingCartComponent implements OnInit {
   buyBooks(){
     if(confirm("Do you really want to buy the cart?")){
         const userId = this.authService.getCurrentUserId();
-      let order = new Order(null, new Date(), this.totalPrices.gross,
-      this.totalPrices.vat, userId, null, null);
-      //this.scs.create(order);
 
-        let test: Order = OrderFactory.empty();
-        console.log(test);
+        let states: State[] = new Array(new State(null, 'Init State', "open"));
 
-      //this.router.navigate(['./order/'+ userId]);
-    this.scs.create(order).subscribe(res => {
+        let order = new Order(null, undefined, this.totalPrices.gross,
+        this.totalPrices.vat, userId, null, states);
+
+        order = OrderFactory.fromObject(order);
+        //this.scs.create(order);
+
+
+
+
+        //this.router.navigate(['./order/'+ userId]);
+        console.log(order);
+
+        //TODO remove method to order service!
+        this.scs.create(order).subscribe(res => {
         this.router.navigate(['./order/'+ userId]);
     });
     }
