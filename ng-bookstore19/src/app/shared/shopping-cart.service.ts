@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
-import {Observable, of} from "rxjs";
+import {Observable, of, throwError} from "rxjs";
 import {Book} from "./book";
 import {BookFactory} from "./book-factory";
 import {AuthService} from "./authentication.service";
 import {HttpClient} from "@angular/common/http";
 import {catchError, retry} from "rxjs/internal/operators";
+import {Order} from "./order";
 
 @Injectable({
   providedIn: 'root'
@@ -90,26 +91,7 @@ export class ShoppingCartService {
     return of({net: this.totalNet, gross: this.totalGross, vat: this.vat});
   }
 
-  createOrder(order: Order): Observable<any> {
-    /*{
-     "order_date":"2019-05-02 08:09:02",
-     "total_price":"1.99",
-     "vat": 10,
-     "user_id": 1,
-     "states": [
-     {
-     "comment": "Hans eins",
-     "state": "open"
-     },
-     {
-     "comment": "Hans zwei",
-     "state": "paid"
-     }],
-     "books" : [
-     {"isbn": "1234512345"},
-     {"isbn": "123451234567"}
-     ]
-     }*/
+  create(order: Order): Observable<any> {
     console.log(order);//TODO hier gehts weiter
     return this.http.post(`${this.api}/order`, order).pipe(retry(3)).pipe(catchError(this.errorHandler));
   }

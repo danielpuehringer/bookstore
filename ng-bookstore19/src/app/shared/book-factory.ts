@@ -4,7 +4,7 @@ import { Book } from './book';
 export class BookFactory {
 
     static empty(): Book {
-        return new Book(null, '', '', [], new Date(),0, '', 0, [{id: 0, url: '', title: ''}], '');
+        return new Book(null, '', '', [], new Date(),0, '', 0, [{id: 0, url: '', title: ''}], '', 0);
     }
 
     static fromObject(rawBook: any): Book {

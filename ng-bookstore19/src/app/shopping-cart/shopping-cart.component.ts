@@ -4,6 +4,7 @@ import {Book} from "../shared/book";
 import {AuthService} from "../shared/authentication.service";
 import {Router} from "@angular/router";
 import {Order} from "../shared/order";
+import {OrderFactory} from "../shared/order-factory";
 
 @Component({
   selector: 'bs-shopping-cart',
@@ -34,9 +35,15 @@ export class ShoppingCartComponent implements OnInit {
         const userId = this.authService.getCurrentUserId();
       let order = new Order(null, new Date(), this.totalPrices.gross,
       this.totalPrices.vat, userId, null, null);
-      this.scs.createOrder(order);
+      //this.scs.create(order);
 
-      this.router.navigate(['./order/'+ userId]);
+        let test: Order = OrderFactory.empty();
+        console.log(test);
+
+      //this.router.navigate(['./order/'+ userId]);
+    this.scs.create(order).subscribe(res => {
+        this.router.navigate(['./order/'+ userId]);
+    });
     }
   }
 
