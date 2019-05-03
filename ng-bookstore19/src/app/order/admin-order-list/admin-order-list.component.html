@@ -16,6 +16,19 @@
                     <p>Order created by: User Nr. {{ order.user_id }}</p>
                     <p>Status History: <span *ngFor="let state of order.states | reverse; last as l">{{ state.state | uppercase }} ({{state.comment}})<span *ngIf="!l"> <-- </span></span></p>
                 </div>
+
+                <div>Edit status (Current status: {{ order.states[order.states.length-1].state }})
+                    <select class="ui fluid dropdown">
+                        <option value="open">Open</option>
+                        <option value="canceled">Canceled</option>
+                        <option value="paid">Paid</option>
+                        <option value="delivered">Delivered</option>
+                    </select>
+                    <a class="ui red button">
+                        Save new status
+                        <i class="right save icon"></i>
+                    </a>
+                </div>
             </div>
         </div>
     </div>
