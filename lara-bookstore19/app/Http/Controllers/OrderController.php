@@ -6,6 +6,7 @@ use App\Book;
 use App\Order;
 use App\State;
 use App\User;
+use http\Env\Response;
 use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\DB;
@@ -32,6 +33,18 @@ class OrderController extends Controller
     public function findByOrderId(string $orderId) { //function is not mandatory
         $order = Order::with(['states', 'books'])->where('id', $orderId)->first();
         return $order;
+    }
+
+    public function update(Request $request, string $order_id) : JsonResponse{
+        DB::beginTransaction();
+        try {
+            DB:commit();
+
+            //$order = Order::with
+        }catch (\Exception $e){
+            DB::rollBack();
+            return response()->json("updating order failed: ". $e->getMessage(), 420);
+        }
     }
 
 
