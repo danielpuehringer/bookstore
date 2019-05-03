@@ -24,9 +24,14 @@ export class OrderService {
           .pipe(retry(3)).pipe(catchError(this.errorHandler));
   }
 
-    create(order: Order): Observable<any> {
-        return this.http.post(`${this.api}/order`, order).pipe(retry(3)).pipe(catchError(this.errorHandler));
-    }
+  create(order: Order): Observable<any> {
+      return this.http.post(`${this.api}/order`, order).pipe(retry(3)).pipe(catchError(this.errorHandler));
+  }
+
+  update(order: Order): Observable<any> {
+      return this.http.put(`${this.api}/order/${order.id}`, order)
+          .pipe(retry(3)).pipe(catchError(this.errorHandler));
+  }
 
 
   private errorHandler(error: Error | any): Observable<any> {

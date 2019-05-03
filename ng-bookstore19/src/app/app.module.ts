@@ -21,6 +21,7 @@ import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
 import { AdminOrderListComponent } from './order/admin-order-list/admin-order-list.component';
 import { OrderListComponent } from './order/order-list/order-list.component';
 import { ReversePipe } from './shared/reverse.pipe';
+import { OrderUpdateFormComponent } from './order/order-update-form/order-update-form.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { ReversePipe } from './shared/reverse.pipe';
     ShoppingCartComponent,
     AdminOrderListComponent,
     OrderListComponent,
-    ReversePipe
+    ReversePipe,
+    OrderUpdateFormComponent
   ],
   imports: [
     BrowserModule,
