@@ -14,7 +14,8 @@ export class OrderFactory {
                 {//state
                     id: null,
                     comment: '',
-                    state: 'open'
+                    state: 'open',
+                    order_id: 1
                 }
             ]);
     }

@@ -36,7 +36,7 @@ export class ShoppingCartComponent implements OnInit {
     if(confirm("Do you really want to buy the cart?")){
         const userId = this.authService.getCurrentUserId();
 
-        let states: State[] = new Array(new State(null, 'Init State', "open"));
+        let states: State[] = new Array(new State(null, 'Init State', "open", null));
         let order = new Order(null, undefined, this.totalPrices.gross,
         this.totalPrices.vat, userId, this.cartBooks, states);
         order = OrderFactory.fromObject(order);

@@ -29,6 +29,8 @@ export class OrderService {
   }
 
   update(order: Order): Observable<any> {
+      console.log("order:");
+      console.log(order);
       return this.http.put(`${this.api}/order/${order.id}`, order)
           .pipe(retry(3)).pipe(catchError(this.errorHandler));
   }

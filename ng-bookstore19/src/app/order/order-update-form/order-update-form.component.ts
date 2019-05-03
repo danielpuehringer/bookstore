@@ -23,10 +23,10 @@ export class OrderUpdateFormComponent implements OnInit {
   }
 
   submitForm() {
-    const state = new State(null, this.stateForm.value.state, this.stateForm.value.comment);
+    const state = new State(undefined, this.stateForm.value.state, this.stateForm.value.comment, this.order.id);
     this.order.states.push(state);
     console.log(this.order);
-    //this.os.update(this.order);
+    this.os.update(this.order).subscribe((res) => {console.log(res); this.order = res});
   }
 
   initOrder() {

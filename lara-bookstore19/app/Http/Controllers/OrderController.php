@@ -38,13 +38,39 @@ class OrderController extends Controller
     public function update(Request $request, string $order_id) : JsonResponse{
         DB::beginTransaction();
         try {
-            DB:commit();
+            $order = Order::with(['states', 'books'])
+                ->where('id', $order_id)->first();
+            if ($order != null) {
+                $request = $this->parseRequest($request);
+                $order->update($request->all());
 
-            //$order = Order::with
-        }catch (\Exception $e){
-            DB::rollBack();
-            return response()->json("updating order failed: ". $e->getMessage(), 420);
+                //delete all old images
+                $order->states()->delete();
+                if(isset($request['states']) && is_array($request['states'])) {
+                    foreach ($request['states'] as $s) {
+                        $state = State::firstOrNew(['comment' => $s['comment'], 'state' => $s['state'], 'order_id' => $order_id]);
+                        $order->states()->save($state);
+                    }
+                    //TODO investigate further
+                }
+            }
+
+            DB::commit();
+            $order1 = Book::with(['states', 'books'])
+                ->where('id', $order_id)->first();
+            // return a vaild http response
+            return response()->json($order1, 201);
         }
+        catch (\Exception $e) {
+            // rollback all queries
+            DB::rollBack();
+            return response()->json("updating book failed: " . $e->getMessage(), 420);
+
+        }
+    }
+
+    public function updateStates(Request $request, string $order_id) : JsonResponse{
+
     }
 
 

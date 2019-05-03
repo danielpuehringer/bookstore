@@ -36,6 +36,7 @@ Route::get('orders', 'OrderController@index');
 Route::get('orders/user/{id}', 'OrderController@findByUserId');
 Route::get('order/{id}', 'OrderController@findByOrderId');
 Route::post('order', 'OrderController@save');
+Route::put('order/{id}', 'OrderController@update');
 
 
 Route::group(['middleware' => ['api', 'cors', 'jwt.auth']], function () {

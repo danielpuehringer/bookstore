@@ -29,7 +29,7 @@ export class ShoppingCartService {
       this.cartBooks.push(cartBook);
       localStorage.setItem(cartBook.isbn, JSON.stringify(cartBook));
 
-      for(let i = 3; i < localStorage.length; i++){
+      for(let i = 0; i < localStorage.length; i++){
         let value = localStorage.getItem(localStorage.key(i));
         if (value[0] === "{") {
           value = JSON.parse(value);

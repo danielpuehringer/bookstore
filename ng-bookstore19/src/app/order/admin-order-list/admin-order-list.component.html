@@ -12,7 +12,7 @@
                         <div>{{ book.title }} - {{ book.subtitle }} ({{ book.isbn }} ({{ book.net_price }}€)</div>
                     </div>
                 </div>
-                <div class="extra">
+                <div class="extra" *ngIf="order && order.states">
                     <p>Order created by: User Nr. {{ order.user_id }}</p>
                     <p>Status History: <span *ngFor="let state of order.states | reverse; last as l">{{ state.state | uppercase }} ({{state.comment}})<span *ngIf="!l"> <-- </span></span></p>
                 </div>
