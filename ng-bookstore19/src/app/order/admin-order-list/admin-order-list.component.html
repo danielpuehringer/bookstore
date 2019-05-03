@@ -1,28 +1,22 @@
 <h3>Backend view of all orders:</h3>
 
-<div class="item" *ngFor="let order of orders">
-    <a routerLink="../order/{{order.user_id}}">
+<div class="ui items">
+    <div class="item" *ngFor="let order of orders">
         <div class="ui segment">
-            <i class="map marker icon"></i>
             <div class="content">
-                <div class="header">[{{ order.states[order.states.length-1].state }}] Order Nr. {{ order.id }} from {{ order.order_date }} | {{ order.total_price }}€</div>
+                <a class="header" routerLink="../order/{{order.user_id}}">{{ order.order_date }} (Nr.{{ order.id }})</a>
                 <div class="description">
-                    <div>
-                        {{ order.vat }}% is {{ order.total_price }}
-                    </div>
-                    <div *ngIf="isAdmin()">
-                        User ID: {{ order.user_id }}
-                    </div>
-                    <div *ngFor="let state of order.states">
-                        Status: {{ state.state}} ({{ state.comment }})
-                    </div>
-
-                    <div class="ui horizontal divider"></div>
+                    <div>Amount: {{ order.total_price }}€ (with {{ order.vat }}%VAT)</div>
+                    <div>State: {{ order.states[order.states.length-1].state | uppercase}} </div>
                     <div *ngFor="let book of order.books">
-                        <span>Book: {{ book.title }} - {{ book.subtitle }} ({{ book.isbn }} costs {{ book.net_price }})</span>
+                        <div>{{ book.title }} - {{ book.subtitle }} ({{ book.isbn }} ({{ book.net_price }}€)</div>
                     </div>
+                </div>
+                <div class="extra">
+                    <p>Order created by: User Nr. {{ order.user_id }}</p>
+                    <p>Status History: <span *ngFor="let state of order.states | reverse; last as l">{{ state.state | uppercase }} ({{state.comment}})<span *ngIf="!l"> <-- </span></span></p>
                 </div>
             </div>
         </div>
-    </a>
+    </div>
 </div>

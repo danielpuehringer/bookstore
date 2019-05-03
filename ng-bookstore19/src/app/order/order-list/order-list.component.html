@@ -41,11 +41,11 @@
                 </div>
             </td>
 
-            <td *ngFor="let b of order.books">
-                <div class="content">
-                    {{ b.title }}
-                </div>
-                <div class="sub header">{{ b.subtitle }}
+            <td>
+                <div *ngFor="let b of order.books" >
+                    <div class="content">
+                        {{ b.title }} - {{ b.subtitle }}
+                    </div>
                 </div>
             </td>
         </tr>
