@@ -9,7 +9,7 @@ export class OrderFactory {
             0, //total_price
             0, //vat
             0,//user_id
-            [null],
+            null,
             [
                 {//state
                     id: null,
@@ -20,7 +20,6 @@ export class OrderFactory {
     }
 
     static fromObject(rawOrder: any): Order {
-        console.log("From object");
         return new Order(
             rawOrder.id,
             typeof(rawOrder.order_date) === 'string' ?
@@ -28,7 +27,7 @@ export class OrderFactory {
             rawOrder.total_price,
             rawOrder.vat,
             rawOrder.user_id,
-            rawOrder.book_id,
+            rawOrder.books,
             rawOrder.states
         );
     }

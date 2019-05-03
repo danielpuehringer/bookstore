@@ -91,10 +91,6 @@ export class ShoppingCartService {
     return of({net: this.totalNet, gross: this.totalGross, vat: this.vat});
   }
 
-  create(order: Order): Observable<any> {
-    return this.http.post(`${this.api}/order`, order).pipe(retry(3)).pipe(catchError(this.errorHandler));
-  }
-
     private errorHandler(error: Error | any): Observable<any>{
         return throwError(error);
     }

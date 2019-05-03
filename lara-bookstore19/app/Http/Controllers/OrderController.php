@@ -54,13 +54,6 @@ class OrderController extends Controller
                 }
             }
 
-            if(isset($request['states']) && is_array($request['states'])) {
-                foreach ($request['states'] as $s) {
-                    $state = State::firstOrNew(['comment' => $s['comment'], 'state' => $s['state'], 'order_id' => $orderId]);
-                    $order->states()->save($state);
-                }
-            }
-
             //BOOKS
             if(isset($request['books']) && is_array($request['books'])) {
                 foreach ($request['books'] as $b){

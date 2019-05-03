@@ -6,6 +6,7 @@ import {Router} from "@angular/router";
 import {Order} from "../shared/order";
 import {OrderFactory} from "../shared/order-factory";
 import {State} from "../shared/state";
+import {OrderService} from "../shared/order.service";
 
 @Component({
   selector: 'bs-shopping-cart',
@@ -17,7 +18,7 @@ export class ShoppingCartComponent implements OnInit {
   public cartBooks: Book[];
   public totalPrices: {net: number, gross: number, vat: number};
 
-  constructor(private scs: ShoppingCartService, private  authService: AuthService, private router: Router) {
+  constructor(private scs: ShoppingCartService, private  authService: AuthService, private router: Router, private os: OrderService) {
     this.cartBooks = scs.cartBooks;
   }
 
@@ -36,23 +37,12 @@ export class ShoppingCartComponent implements OnInit {
         const userId = this.authService.getCurrentUserId();
 
         let states: State[] = new Array(new State(null, 'Init State', "open"));
-
         let order = new Order(null, undefined, this.totalPrices.gross,
-        this.totalPrices.vat, userId, null, states);
-
+        this.totalPrices.vat, userId, this.cartBooks, states);
         order = OrderFactory.fromObject(order);
-        //this.scs.create(order);
-
-
-
-
-        //this.router.navigate(['./order/'+ userId]);
-        console.log(order);
-
-        //TODO remove method to order service!
-        this.scs.create(order).subscribe(res => {
-        this.router.navigate(['./order/'+ userId]);
-    });
+        this.os.create(order).subscribe(res => {
+            this.router.navigate(['./order/'+ userId]);
+        });
     }
   }
 

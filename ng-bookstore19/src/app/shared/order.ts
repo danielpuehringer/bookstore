@@ -1,4 +1,5 @@
 import {State} from "./state";
+import {Book} from "./book";
 export class Order {
     constructor(
         public id: number,
@@ -6,7 +7,7 @@ export class Order {
         public total_price: number,
         public vat: number,
         public user_id: number,
-        public book_id: number[],
+        public books: Book[],
         public states: State[]
     ){
 
