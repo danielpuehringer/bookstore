@@ -12,7 +12,7 @@ export class UserInfoComponent implements OnInit {
   @Input()
   userId: number;
 
-  private user: User = new User(
+  public user: User = new User(
       new Date(),
       "...",
       2,
@@ -35,5 +35,4 @@ export class UserInfoComponent implements OnInit {
   isAdmin(): boolean {
       return this.auth.isAdmin();
   }
-
 }

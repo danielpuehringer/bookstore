@@ -58,6 +58,11 @@ export class ShoppingCartService {
     this.syncWithJSON();
   }
 
+  deleteItemById(itemId){
+      console.log("delete" + itemId);
+      localStorage.removeItem(itemId);
+  }
+
   syncWithJSON(): Observable<Array<Book>> {
     this.cartBooks = new Array();
     for(let i = 0; i < localStorage.length; i++){

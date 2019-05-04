@@ -62,4 +62,8 @@ export class ShoppingCartComponent implements OnInit {
       return this.authService.getCurrentUserId();
   }
 
+    deleteBookFromCart(isbn){
+        this.scs.deleteItemById(isbn);
+    }
+
 }

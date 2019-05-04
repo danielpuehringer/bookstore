@@ -16,13 +16,16 @@
     </button>
 
     <div class="ui middle aligned selection divided list">
-        <a class="bs-book-list-item item"
-           *ngFor="let book of cartBooks"
+
+    <div class="item" *ngFor="let book of cartBooks">
+        <a class="bs-book-list-item"
            [book]="book"
            [routerLink]="['../books', book?.isbn]"
         >
-
         </a>
+        <button class="ui red button" (click)="deleteBookFromCart(book.isbn);">Delete from cart</button>
+    </div>
+
     </div>
     <p>Total Net Price: {{ totalPrices.net }}</p>
     <p>Total Gross Price ({{ totalPrices.vat }}% VAT): {{ totalPrices.gross }}</p>
