@@ -23,6 +23,7 @@ import { OrderListComponent } from './order/order-list/order-list.component';
 import { ReversePipe } from './shared/reverse.pipe';
 import { OrderUpdateFormComponent } from './order/order-update-form/order-update-form.component';
 import { UserInfoComponent } from './user/user-info/user-info.component';
+import { GroupOrderPipe } from './shared/group-order.pipe';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { UserInfoComponent } from './user/user-info/user-info.component';
     OrderListComponent,
     ReversePipe,
     OrderUpdateFormComponent,
-    UserInfoComponent
+    UserInfoComponent,
+    GroupOrderPipe
   ],
   imports: [
     BrowserModule,

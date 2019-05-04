@@ -1,7 +1,7 @@
 <h3>Backend view of all orders:</h3>
 
 <div class="ui items">
-    <div class="item" *ngFor="let order of orders">
+    <div class="item" *ngFor="let order of orders | groupOrder">
         <div class="ui segment">
             <div class="content">
                 <a class="header" routerLink="../order/{{order.user_id}}">{{ order.order_date }} (Nr.{{ order.id }})</a>
