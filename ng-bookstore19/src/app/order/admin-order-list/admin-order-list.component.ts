@@ -15,7 +15,11 @@ export class AdminOrderListComponent implements OnInit {
     constructor(private os: OrderService, private auth: AuthService) { }
 
     ngOnInit() {
-        this.os.getAllOrders().subscribe(res => this.orders = res);
+        this.os.getAllOrders().subscribe(res => {
+            this.orders = res;
+            console.log("---Refresh Orders---");
+            console.log(this.orders);
+        });
     }
 
     isLoggedIn(): boolean {

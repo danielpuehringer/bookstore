@@ -37,10 +37,8 @@ export class OrderService {
   }
 
   updateStatus(state: State, order_id: number): Observable<any> {
-      console.log(state, order_id);
       return this.http.post(`${this.api}/order/${order_id}/state`, state);
   }
-
 
   private errorHandler(error: Error | any): Observable<any> {
     return throwError(error);
