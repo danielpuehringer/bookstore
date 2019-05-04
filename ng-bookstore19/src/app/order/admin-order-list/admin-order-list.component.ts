@@ -17,8 +17,6 @@ export class AdminOrderListComponent implements OnInit {
     ngOnInit() {
         this.os.getAllOrders().subscribe(res => {
             this.orders = res;
-            console.log("---Refresh Orders---");
-            console.log(this.orders);
         });
     }
 
