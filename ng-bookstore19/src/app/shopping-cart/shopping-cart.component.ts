@@ -64,6 +64,9 @@ export class ShoppingCartComponent implements OnInit {
 
     deleteBookFromCart(isbn){
         this.scs.deleteItemById(isbn);
+        this.scs.syncWithJSON();
+        this.cartBooks = this.scs.cartBooks; //manually refreshing
+        this.totalPrices = {"net": this.scs.totalNet, "gross": this.scs.totalGross, "vat": this.scs.vat};
     }
 
 }

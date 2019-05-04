@@ -59,7 +59,6 @@ export class ShoppingCartService {
   }
 
   deleteItemById(itemId){
-      console.log("delete" + itemId);
       localStorage.removeItem(itemId);
   }
 

@@ -9,6 +9,9 @@
           <span *ngIf="!l">, </span>
         </span>
     </div>
-    <div class="extra">ISBN {{book.isbn}}</div>
+    <div class="extra">
+        <p>ISBN: {{book.isbn}}</p>
+        <p>Price: {{ book.net_price }}</p>
+    </div>
   </div>
 </a>
