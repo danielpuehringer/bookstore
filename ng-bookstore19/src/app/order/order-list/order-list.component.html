@@ -3,7 +3,6 @@
         <thead>
         <tr><th>Order ID</th>
             <th>Ordered On</th>
-            <th>Created By</th>
             <th>Current State</th>
             <th>All States</th>
             <th>Book Title</th>
@@ -21,15 +20,11 @@
                 </div>
             </td>
 
-            <td>
-                <div class="content">
-                    {{ order.user_id }}
-                </div>
-            </td>
-
             <td *ngIf="order.states">
                 <div class="content">
-                    {{ order.states[order.states.length-1].state }}
+                    <p>{{ order.states[order.states.length-1].state }}</p>
+                    <p>(last changed on {{ order.states[order.states.length-1].created_at }})</p>
+                    <p>(last comment: "{{ order.states[order.states.length-1].comment }}")</p>
                 </div>
             </td>
 

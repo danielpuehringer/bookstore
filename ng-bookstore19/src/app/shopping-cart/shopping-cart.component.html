@@ -1,16 +1,16 @@
 <div class="ui container">
     <h3>Shopping Cart</h3>
 
-    <bs-user-info [userId]="getCurrentUserId()"></bs-user-info>
+    <bs-user-info *ngIf="isLoggedIn();" [userId]="getCurrentUserId()"></bs-user-info>
 
     <div *ngIf="!isLoggedIn();" class="ui ignored info attached message">
         You need to log in to buy books!
     </div>
-    <button class="ui red button" (click)="clearStorage();">
+    <button *ngIf="cartBooks.length > 0" class="ui red button" (click)="clearStorage();">
         Clear Cart
         <i class="right trash icon"></i>
     </button>
-    <button *ngIf="isLoggedIn();" class="ui green button" (click)="buyBooks();">
+    <button *ngIf="isLoggedIn() && !isAdmin()" class="ui green button" (click)="buyBooks();">
         Buy these books
         <i class="right money bill alternate outline icon"></i>
     </button>

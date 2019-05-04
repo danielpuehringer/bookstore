@@ -58,6 +58,10 @@ export class ShoppingCartComponent implements OnInit {
     return this.authService.isLoggedIn();
   }
 
+  isAdmin() {
+      return this.authService.isAdmin();
+  }
+
   getCurrentUserId(): number {
       return this.authService.getCurrentUserId();
   }
