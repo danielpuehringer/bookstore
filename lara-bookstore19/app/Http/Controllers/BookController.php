@@ -95,7 +95,6 @@ class BookController extends Controller
         }
     }
 
-
     /**
      * modify / convert values if needed
      */
@@ -163,6 +162,5 @@ class BookController extends Controller
         else
             throw new \Exception("book couldn't be deleted - it does not exist");
         return response()->json('book (' . $isbn . ') successfully deleted', 200);
-
     }
 }

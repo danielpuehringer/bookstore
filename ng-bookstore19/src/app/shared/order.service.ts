@@ -4,6 +4,7 @@ import {Observable, throwError, of} from "rxjs";
 import { ajax } from 'rxjs/ajax';
 import {catchError, retry, map} from "rxjs/internal/operators";
 import {Order} from "./order";
+import {State} from "./state";
 
 @Injectable({
   providedIn: 'root'
@@ -33,6 +34,11 @@ export class OrderService {
       console.log(order);
       return this.http.put(`${this.api}/order/${order.id}`, order)
           .pipe(retry(3)).pipe(catchError(this.errorHandler));
+  }
+
+  updateStatus(state: State, order_id: number): Observable<any> {
+      console.log(state, order_id);
+      return this.http.post(`${this.api}/order/${order_id}/state`, state);
   }
 
 

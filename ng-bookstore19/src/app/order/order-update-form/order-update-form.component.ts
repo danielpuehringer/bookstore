@@ -23,10 +23,9 @@ export class OrderUpdateFormComponent implements OnInit {
   }
 
   submitForm() {
-    const state = new State(undefined, this.stateForm.value.state, this.stateForm.value.comment, this.order.id);
+    const state = new State(undefined, this.stateForm.value.comment, this.stateForm.value.state, this.order.id);
     this.order.states.push(state);
-    console.log(this.order);
-    this.os.update(this.order).subscribe((res) => {console.log(res); this.order = res});
+    this.os.updateStatus(state, this.order.id).subscribe((res) => {console.log(res); this.order = res;});
   }
 
   initOrder() {

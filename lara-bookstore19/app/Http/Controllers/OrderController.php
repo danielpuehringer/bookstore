@@ -113,6 +113,23 @@ class OrderController extends Controller
         return $request;
     }
 
+    public function saveStateToOrder(Request $request, $order_id): JsonResponse {
+        $order = Order::with(['states'])->where('id', $order_id)->first();
+        DB::beginTransaction();
+
+        try {
+            $state = State::firstOrNew(['comment' => $request['comment'], 'state' => $request['state'], 'order_id' => $order_id]);
+            $order->states()->save($state);
+
+            DB::commit();
+            $order2 = Order::with(['states'])->where('id', $order_id)->first();
+            return response()->json($order2);
+        }catch(\Exception $e){
+            DB::rollback();
+            return response()->json('Error occured: '. $e->getMessage(), 404);
+        }
+    }
+
     /**
      * modify / convert values if needed
      */

@@ -38,6 +38,7 @@ Route::get('order/{id}', 'OrderController@findByOrderId');
 Route::post('order', 'OrderController@save');
 Route::put('order/{id}', 'OrderController@update');
 
+Route::post('order/{id}/state', 'OrderController@saveStateToOrder');
 Route::get('authors', 'AuthorController@index');
 
 
