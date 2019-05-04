@@ -4,6 +4,7 @@ import {HttpClient} from "@angular/common/http";
 import * as decode from 'jwt-decode';
 import {retry} from 'rxjs/operators';
 import {Observable} from "rxjs";
+//import {User} from "./user";NOTE: do not use this class, use the interface because of result
 
 //npm install --save-dev jwt-decode
 
@@ -22,6 +23,7 @@ interface User {
 export class AuthService {
 
     private api:string = 'http://bookstore19.s1610456027.student.kwmhgb.at/api';//'http://localhost:8080/api/auth';
+    private user: User;
 
     constructor(private http: HttpClient) {
     }
@@ -35,6 +37,10 @@ export class AuthService {
                 localStorage.setItem('userId', res.result.id.toString());
             }
         );
+    }
+
+    public getUser(user_id: number): Observable<any> {
+        return this.http.get(`${this.api}/user/${user_id}`);
     }
 
     public getCurrentUserId(){
