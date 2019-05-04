@@ -44,7 +44,7 @@ class OrderController extends Controller
                 $request = $this->parseRequest($request);
                 $order->update($request->all());
 
-                //delete all old images
+                //delete all old states
                 $order->states()->delete();
                 if(isset($request['states']) && is_array($request['states'])) {
                     foreach ($request['states'] as $s) {
@@ -56,7 +56,7 @@ class OrderController extends Controller
             }
 
             DB::commit();
-            $order1 = Book::with(['states', 'books'])
+            $order1 = Order::with(['states', 'books'])
                 ->where('id', $order_id)->first();
             // return a vaild http response
             return response()->json($order1, 201);

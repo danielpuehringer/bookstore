@@ -19,7 +19,7 @@ export class ShoppingCartService {
 
     private api= "http://bookstore19.s1610456027.student.kwmhgb.at/api";
 
-  private vat = 20;//tax
+  public vat = 20;//tax
 
   constructor(private auth: AuthService, private http: HttpClient) {
   }

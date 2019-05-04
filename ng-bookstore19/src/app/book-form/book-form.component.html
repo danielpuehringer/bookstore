@@ -3,26 +3,26 @@
     <form  class="ui large form" [formGroup]="bookForm" (ngSubmit)="submitForm()">
         <input type="hidden" name="id">
         <div class="field">
-            <label>Buchtitel</label>
+            <label>Title</label>
             <input formControlName="title">
             <div *ngIf="errors.title" class="ui negative message"> {{ errors.title }} </div>
         </div>
         <div class="field">
-            <label>Untertitel</label>
+            <label>subtitle</label>
             <input formControlName="subtitle">
         </div>
         <div class="field" [class.disabled]="isUpdatingBook">
-            <label>ISBN-Nummer</label>
+            <label>ISBN-Number</label>
             <input formControlName="isbn">
             <div *ngIf="errors.isbn" class="ui negative message">{{ errors.isbn }} </div>
         </div>
         <div class="field">
-            <label>Erscheinungsdatum</label>
+            <label>Published on</label>
             <input type="date" useValueAsDate formControlName="published">
             <div *ngIf="errors.published" class="ui negative message">{{ errors.published }}</div>
         </div>
         <div class="field">
-            <label>Beschreibung</label>
+            <label>Desciption</label>
             <textarea formControlName="description" rows="3"></textarea>
         </div>
         <div class="field">
@@ -35,8 +35,13 @@
             <input type="number" formControlName="net_price">
             <div *ngIf="errors.net_price" class="ui negative message">{{ errors.net_price }}</div>
         </div>
+        <div class="xy">
+            <label>Author</label>
+            <p *ngFor="let author of authors"><input type="checkbox" name="{{ author.id }}" value="{{ author.id }}">{{ author.firstName | titlecase}} {{ author.lastName | titlecase}}</p>
+            <div *ngIf="errors.net_price" class="ui negative message">{{ errors.net_price }}</div>
+        </div>
         <div class="field">
-            <label>Bilder</label>
+            <label>Images</label>
             <div formArrayName="images">
                 <div class="fields" *ngFor="let control of images?.controls; index as i; last as l" [formGroupName]="i">
                     <input type="hidden" name="id">

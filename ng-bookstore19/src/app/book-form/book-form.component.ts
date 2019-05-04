@@ -7,6 +7,8 @@ import {BookFactory} from "../shared/book-factory";
 import {BookStoreService} from "../shared/book-store.service";
 import {Book, Image} from "../shared/book";
 import {BookValidators} from "../shared/book-validators";
+import {AuthorService} from "../shared/author.service";
+import {Author} from "../shared/author";
 
 @Component({
     selector: 'bs-book-form',
@@ -18,9 +20,12 @@ export class BookFormComponent implements OnInit {
     errors: { [key: string]: string } = {};
     isUpdatingBook = false;
     images: FormArray;
+    authors: Author[] = new Array({id: 1, firstName: "jonny", lastName: "test"}, {id: 2, firstName: "lonny", lastName: "cash"});
 
     constructor(private fb: FormBuilder, private bs: BookStoreService,
-                private route: ActivatedRoute, private router: Router) { }
+                private route: ActivatedRoute, private router: Router,
+                private as: AuthorService) {
+    }
 
     ngOnInit() {
         const isbn = this.route.snapshot.params['isbn'];
@@ -32,6 +37,7 @@ export class BookFormComponent implements OnInit {
             });
         }
         this.initBook();
+        this.as.getAllAuthors().subscribe(res => {this.authors = res; console.log(res);});
     }
 
     initBook() {

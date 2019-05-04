@@ -38,6 +38,8 @@ Route::get('order/{id}', 'OrderController@findByOrderId');
 Route::post('order', 'OrderController@save');
 Route::put('order/{id}', 'OrderController@update');
 
+Route::get('authors', 'AuthorController@index');
+
 
 Route::group(['middleware' => ['api', 'cors', 'jwt.auth']], function () {
 Route::post('book', 'BookController@save');

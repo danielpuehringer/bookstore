@@ -30,20 +30,28 @@ export class ShoppingCartComponent implements OnInit {
   clearStorage(){
     this.scs.clearStorage();
     this.cartBooks = this.scs.cartBooks; //manually refreshing
+      this.totalPrices = {"net": this.scs.totalNet, "gross": this.scs.totalGross, "vat": this.scs.vat};
   }
 
   buyBooks(){
     if(confirm("Do you really want to buy the cart?")){
         const userId = this.authService.getCurrentUserId();
 
-        let states: State[] = new Array(new State(null, 'Init State', "open", null));
-        let order = new Order(null, undefined, this.totalPrices.gross,
-        this.totalPrices.vat, userId, this.cartBooks, states);
-        order = OrderFactory.fromObject(order);
-        this.os.create(order).subscribe(res => {
-            this.router.navigate(['./order/'+ userId]);
-        });
+        if(this.cartBooks.length <= 0){
+            alert("Empty Cart, buying not possible");
+        }else{
+            let states: State[] = new Array(new State(null, 'Init State', "open", null));
+            let order = new Order(null, undefined, this.totalPrices.gross,
+                this.totalPrices.vat, userId, this.cartBooks, states);
+            order = OrderFactory.fromObject(order);
+            this.os.create(order).subscribe(res => {
+                this.router.navigate(['./order/'+ userId]);
+            });
+        }
+
+
     }
+    this.clearStorage();
   }
 
   isLoggedIn(){
