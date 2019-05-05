@@ -1,6 +1,6 @@
 import {Component, OnInit, Input} from '@angular/core';
-import {User} from "../../shared/user";
 import {AuthService} from "../../shared/authentication.service";
+import {User} from "../../shared/user";
 
 @Component({
   selector: 'bs-user-info',
@@ -29,7 +29,7 @@ export class UserInfoComponent implements OnInit {
   ngOnInit() {
       console.log(this.userId);
 
-      this.auth.getUser(this.userId).subscribe(res => {this.user = res; console.log(this.user);});
+      this.auth.getUser(this.userId).subscribe(res => {this.user = res; console.log(res);});
   }
 
   isAdmin(): boolean {

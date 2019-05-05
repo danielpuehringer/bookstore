@@ -1,12 +1,12 @@
 <div class="ui card">
     <div class="content">
-        <div class="header">Hello, {{ user.name | titlecase}}</div>
+        <div class="header">Hello, {{ user?.name | titlecase}}</div>
         <div *ngIf="isAdmin(); else notAdmin" class="meta">Admin</div>
         <ng-template #notAdmin><div class="meta">Regular User</div></ng-template>
         <div class="description">
-            <p>Full name: {{ user.firstName }} {{ user.lastName | titlecase}}</p>
-            <p>Address: {{ user.address | uppercase}}</p>
-            <p>E-Mail: {{ user.email}}</p>
+            <p>Full name: {{ user?.firstName }} {{ user?.lastName | titlecase}}</p>
+            <p>Address: {{ user?.address | uppercase}}</p>
+            <p>E-Mail: {{ user?.email}}</p>
         </div>
     </div>
 </div>

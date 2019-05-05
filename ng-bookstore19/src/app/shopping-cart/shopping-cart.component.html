@@ -10,7 +10,7 @@
         Clear Cart
         <i class="right trash icon"></i>
     </button>
-    <button *ngIf="isLoggedIn() && !isAdmin()" class="ui green button" (click)="buyBooks();">
+    <button *ngIf="(isLoggedIn() && !isAdmin()) && cartBooks.length > 0" class="ui green button" (click)="buyBooks();">
         Buy these books
         <i class="right money bill alternate outline icon"></i>
     </button>
