@@ -27,8 +27,6 @@ export class UserInfoComponent implements OnInit {
   constructor(private auth: AuthService) { }
 
   ngOnInit() {
-      console.log(this.userId);
-
       this.auth.getUser(this.userId).subscribe(res => {this.user = res; console.log(res);});
   }
 
