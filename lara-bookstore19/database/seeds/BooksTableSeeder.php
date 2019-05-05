@@ -87,6 +87,73 @@ class BooksTableSeeder extends Seeder
 
 
 
+        //THIRD BOOK
+        $book3 = new App\Book();//wird auf fassade gemappt, fassade greift auf DBank
+        $book3->title = "Next.js Quick Start Guide";
+        $book3->isbn = '1244542345';
+        $book3->subtitle = "Server-side rendering done right (English Edition)";
+        $book3->rating = 7;
+        $book3->description = "Rendering things";
+        $book3->net_price = 39.99;
+        $book3->published = new DateTime();
+
+        //get the last user of DB
+        $user = \App\User::all()->last();
+        $book3->user()->associate($user);//adding user
+        $book3->save();//save in DB
+
+        //only inserts the missing ones
+        $authors = \App\Author::first()->pluck('id');
+        $book3->authors()->sync($authors);
+
+        //add images to book
+        $image6 = new \App\Image;
+        $image6->title = "Cover 1";
+        $image6->url = "https://images-eu.ssl-images-amazon.com/images/I/51hhlirIhVL.jpg";
+        $image6->book()->associate($book3);
+        $image6->save();
+
+        $image7 = new \App\Image;
+        $image7->title = "Cover 2";
+        $image7->url = "https://images-na.ssl-images-amazon.com/images/I/61+Qe7321NL._SY200_.jpg";
+        $image7->book()->associate($book3);
+        $image7->save();
+
+
+        //FOURTH BOOK
+        $book4 = new App\Book();//wird auf fassade gemappt, fassade greift auf DBank
+        $book4->title = "Kinderbuch";
+        $book4->isbn = '1244587785';
+        $book4->subtitle = "Heute gibt es warme eiscreme";
+        $book4->rating = 4;
+        $book4->description = "Eis = lecker";
+        $book4->net_price = 9.99;
+        $book4->published = new DateTime();
+
+        //get the last user of DB
+        $user = \App\User::all()->last();
+        $book4->user()->associate($user);//adding user
+        $book4->save();//save in DB
+
+        //only inserts the missing ones
+        $authors = \App\Author::first()->pluck('id');
+        $book4->authors()->sync($authors);
+
+        //add images to book
+        $image8 = new \App\Image;
+        $image8->title = "Cover 1";
+        $image8->url = "https://images-eu.ssl-images-amazon.com/images/I/51Nxr9JfAPL.jpg";
+        $image8->book()->associate($book4);
+        $image8->save();
+
+        $image9 = new \App\Image;
+        $image9->title = "Cover 2";
+        $image9->url = "https://cdn1.spiegel.de/images/image-1423777-860_poster_16x9-cisx-1423777.jpg";
+        $image9->book()->associate($book4);
+        $image9->save();
+
+
+
 
         /*//update
         $book = App\Book::find(1);
