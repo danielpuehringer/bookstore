@@ -1,5 +1,5 @@
 # bookstore19
-University Project: Bookstore for HGB 6th Semester
+University **Capstone Project**: Full Stack Book Store (Frontend Angular, Backend Laravel)
 
 Frontend: Angular
 Backend: Laravel
